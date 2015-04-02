@@ -1,147 +1,147 @@
 {
-	"controller" : {
-		"id" : "saiowscore"
-	},
-	"workers" : [
-		{
-			"type" : "router",
-			"options" : {},
-			"realms" : [
-				{
-					"name" : "saio_crossbar_realm",
-					"roles" : [
-						{
-							"name" : "anonymous",
-							"permissions" : [
-								{
-									"uri" : "com.saio.api.public.*",
-									"publish" : true,
-									"subscribe" : true,
-									"call" : true,
-									"register" : false
-								},
-								{
-									"uri" : "com.saio.api.enterprise.*",
-									"publish" : false,
-									"subscribe" : false,
-									"call" : false,
-									"register" : false
-								},
-								{
-									"uri" : "fr.saio.api.service.*",
-									"publish" : false,
-									"subscribe" : false,
-									"call" : false,
-									"register" : false
-								}
-							]
-						},
-						{
-							"name" : "enterprise",
-							"permissions" : [
-								{
-									"uri" : "com.saio.api.public.*",
-									"publish" : true,
-									"subscribe" : true,
-									"call" : true,
-									"register" : false
-								},
-								{
-									"uri" : "com.saio.api.enterprise.*",
-									"publish" : true,
-									"subscribe" : true,
-									"call" : true,
-									"register" : false
-								},
-								{
-									"uri" : "fr.saio.api.service.*",
-									"publish" : false,
-									"subscribe" : false,
-									"call" : false,
-									"register" : false
-								}
-							]
-						},
-						{
-							"name" : "service",
-							"permissions" : [
-								{
-									"uri" : "com.saio.api.public.*",
-									"publish" : true,
-									"subscribe" : true,
-									"call" : true,
-									"register" : true
-								},
-								{
-									"uri" : "com.saio.api.enterprise.*",
-									"publish" : true,
-									"subscribe" : true,
-									"call" : true,
-									"register" : true
-								},
-								{
-									"uri" : "com.saio.api.private.*",
-									"publish" : true,
-									"subscribe" : true,
-									"call" : true,
-									"register" : true
-								}
-							]
-						}
-					]
-				}
-			],
-			"transports" : [
-				{
-					"type" : "websocket",
-					"endpoint" : {
-						"type" : "tcp",
-						"port" : 8080
-					},
-					"options" : {
-						"echo_close_codereason" : true,
-						"open_handshake_timeout" : 5000,
-						"close_handshake_timeout" : 1000,
-						"auto_ping_interval" : 10000,
-						"auto_ping_timeout" : 5000,
-						"auto_ping_size" : 4
-					},
-					"auth" : {
-						"anonymous" : {
-							"role" : "anonymous"
-						},
-						"wampcra" : {
-							"type" : "static",
-							"users" : {
-								"enterprise" : {
-									"secret" : "enterprisepassword",
-									"role" : "enterprise"
-								}
-							}
-						}
-					}
-				},
-				{
-					"type" : "rawsocket",
-					"serializer" : "json",
-					"endpoint" : {
-						"type" : "tcp",
-						"port" : 4242
-					},
-					"auth" : {
-						"wampcra" : {
-							"type" : "static",
-							"users" : {
-								"service" : {
-									"secret" : "servicepassword",
-									"role" : "service"
-								}
-							}
-						}
-					}
-				}
-			],
-			"components" : []
-		}
-	]
+  "controller" : {
+    "id" : "saiows"
+  },
+  "workers" : [
+    {
+      "type" : "router",
+      "options" : {},
+      "realms" : [
+        {
+          "name" : "saio_crossbar_realm",
+          "roles" : [
+            {
+              "name" : "anonymous",
+              "permissions" : [
+                {
+                  "uri" : "com.saio.api.public.*",
+                  "publish" : true,
+                  "subscribe" : true,
+                  "call" : true,
+                  "register" : false
+                },
+                {
+                  "uri" : "com.saio.api.enterprise.*",
+                  "publish" : false,
+                  "subscribe" : false,
+                  "call" : false,
+                  "register" : false
+                },
+                {
+                  "uri" : "fr.saio.api.service.*",
+                  "publish" : false,
+                  "subscribe" : false,
+                  "call" : false,
+                  "register" : false
+                }
+              ]
+            },
+            {
+              "name" : "enterprise",
+              "permissions" : [
+                {
+                  "uri" : "com.saio.api.public.*",
+                  "publish" : true,
+                  "subscribe" : true,
+                  "call" : true,
+                  "register" : false
+                },
+                {
+                  "uri" : "com.saio.api.enterprise.*",
+                  "publish" : true,
+                  "subscribe" : true,
+                  "call" : true,
+                  "register" : false
+                },
+                {
+                  "uri" : "fr.saio.api.service.*",
+                  "publish" : false,
+                  "subscribe" : false,
+                  "call" : false,
+                  "register" : false
+                }
+              ]
+            },
+            {
+              "name" : "service",
+              "permissions" : [
+                {
+                  "uri" : "com.saio.api.public.*",
+                  "publish" : true,
+                  "subscribe" : true,
+                  "call" : true,
+                  "register" : true
+                },
+                {
+                  "uri" : "com.saio.api.enterprise.*",
+                  "publish" : true,
+                  "subscribe" : true,
+                  "call" : true,
+                  "register" : true
+                },
+                {
+                  "uri" : "com.saio.api.private.*",
+                  "publish" : true,
+                  "subscribe" : true,
+                  "call" : true,
+                  "register" : true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "transports" : [
+        {
+          "type" : "websocket",
+          "endpoint" : {
+            "type" : "tcp",
+            "port" : 8080
+          },
+          "options" : {
+            "echo_close_codereason" : true,
+            "open_handshake_timeout" : 5000,
+            "close_handshake_timeout" : 1000,
+            "auto_ping_interval" : 10000,
+            "auto_ping_timeout" : 5000,
+            "auto_ping_size" : 4
+          },
+          "auth" : {
+            "anonymous" : {
+              "role" : "anonymous"
+            },
+            "wampcra" : {
+              "type" : "static",
+              "users" : {
+                "enterprise" : {
+                  "secret" : "enterprisepassword",
+                  "role" : "enterprise"
+                }
+              }
+            }
+          }
+        },
+        {
+          "type" : "rawsocket",
+          "serializer" : "json",
+          "endpoint" : {
+            "type" : "tcp",
+            "port" : 4242
+          },
+          "auth" : {
+            "wampcra" : {
+              "type" : "static",
+              "users" : {
+                "service" : {
+                  "secret" : "servicepassword",
+                  "role" : "service"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "components" : []
+    }
+  ]
 }
