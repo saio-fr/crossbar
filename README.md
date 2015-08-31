@@ -1,26 +1,26 @@
-Crossbar Test Config
+Crossbar config
+===============
+There is 2 transports servers, one for users (aka "public") and one for services (aka "private").
 
-Realm : "saio_crossbar_realm"
+Transport
+---------
 
-Transports | protocol / possible auth methods : (=> non testé TODO)
-	- WebSocket ws://0.0.0.0:8080 / "anonymous" & wampcra auth as "enterprise"
-	- RawSocket (over tcp) tcp://0.0.0.0:4242 / wampcra auth as "service"
+* realm: "saio"
+* public port: 8080 (should be open)
+* private port: 8081 (must not be open)
 
-Roles | role / namespaces / permissions (ie PSCR - pub, sub, call, reg) :
-	- anonymous
-		com.saio.api.public.* / 1110
-		com.saio.api.enterprise.* / 0000
-		com.saio.api.service.* / 0000
-	- enterprise (user : "enterprise" / password : "enterprisepassword")
-		com.saio.api.public.* / 1110
-		com.saio.api.enterprise.* / 1110
-		com.saio.api.service.* / 0000
-	- service (user : "enterprise" / password : "enterprisepassword")
-		com.saio.api.public.* / 1111
-		com.saio.api.enterprise.* / 1111
-		com.saio.api.service.* / 1111
+Authentication
+--------------
+* public: dynamic authenticator at "fr.saio.service.crossbar.session.manager.authenticate"
 
-Deploy :
-	$ docker build .
-	=> return "$ Successfully built [imageID]"
-	$ docker run -P [imageID]
+	{ authid: [sessionId], password: [token] }, gives authrole: "user"
+
+* private: static authentication
+
+	{ authid: "service", password: "service" }, gives authrole: "service"
+
+Authorization
+-------------
+* public: dynamic authorizer at "fr.saio.authorizer.crossbar.can"
+
+* private: static authorization, publish / subscribe / call / register granted for all routes.

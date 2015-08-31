@@ -1,4 +1,6 @@
 FROM vinelab/crossbar
-MAINTAINER Alexis Terrat <alexisterrat@gmail.com>
-COPY ./config.json /.crossbar/config.json
-CMD crossbar start --cbdir /.crossbar
+RUN mkdir -p /usr/local/bin/crossbar/.crossbar
+COPY ./config.json /usr/local/bin/crossbar/.crossbar/config.json
+WORKDIR /usr/local/bin/crossbar
+CMD crossbar start
+EXPOSE 8080 8081
