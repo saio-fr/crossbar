@@ -22,7 +22,9 @@ export KUBERNETES_CMD="$KUBERNETES_KUBECTL --server=${KUBERNETES_SERVER} --usern
 # Switch k8 namespaces (prod, staging...) based on current branch
 if [ $CIRCLE_BRANCH = "staging" ]; then
     $KUBERNETES_CMD config use-context staging
-else if [ $CIRCLE_BRANCH = "master" ]; then
+fi
+
+if [ $CIRCLE_BRANCH = "master" ]; then
     $KUBERNETECMD config use-context production
 fi
 
