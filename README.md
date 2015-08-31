@@ -1,6 +1,6 @@
 Crossbar config
 ===============
-There is 2 transports servers, one for users (aka "public") and one for services (aka "private").
+There are 2 transports servers, one for users (aka "public") and one for services (aka "private").
 
 Transport
 ---------
@@ -11,6 +11,7 @@ Transport
 
 Authentication
 --------------
+
 * public: dynamic authenticator at "fr.saio.service.crossbar.session.manager.authenticate"
 
 	{ authid: [sessionId], password: [token] }, gives authrole: "user"
@@ -21,6 +22,7 @@ Authentication
 
 Authorization
 -------------
-* public: dynamic authorizer at "fr.saio.authorizer.crossbar.can"
+
+* public: dynamic authorizer at "fr.saio.service.authorizer.crossbar.can"
 
 * private: static authorization, publish / subscribe / call / register granted for all routes.
