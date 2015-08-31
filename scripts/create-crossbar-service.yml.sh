@@ -14,11 +14,11 @@ spec:
   type: NodePort
   ports:
     - port: 8080
-      name: ws public
+      name: ws-public
       targetPort: 8080
       protocol: TCP
     - port: 8081
-      name: ws private
+      name: ws-internal
       targetPort: 8081
       protocol: TCP
   # just like the selector in the replication controller,
