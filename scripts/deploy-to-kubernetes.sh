@@ -22,13 +22,15 @@ export KUBERNETES_CMD="$KUBERNETES_KUBECTL --server=${KUBERNETES_SERVER} --usern
 $KUBERNETES_CMD config set-context staging --namespace=staging --cluster=saio-fr_kubernetes --user=saio-fr_kubernetes
 $KUBERNETES_CMD config set-context production --namespace=production --cluster=saio-fr_kubernetes --user=saio-fr_kubernetes
 
+echo $CIRCLE_BRANCH;
+
 # Switch k8 namespaces (prod, staging...) based on current branch
-if [ $CIRCLE_BRANCH = "staging" ]; then
+if [ "$CIRCLE_BRANCH" = "staging" ]; then
     echo 'Using staging namespace'
     $KUBERNETES_CMD config use-context staging
 fi
 
-if [ $CIRCLE_BRANCH = "master" ]; then
+if [ "$CIRCLE_BRANCH" = "master" ]; then
     echo 'Using production namespace'
     $KUBERNETES_CMD config use-context production
 fi
