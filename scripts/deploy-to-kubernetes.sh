@@ -25,7 +25,7 @@ if [ $CIRCLE_BRANCH = "staging" ]; then
 fi
 
 if [ $CIRCLE_BRANCH = "master" ]; then
-    $KUBERNETECMD config use-context production
+    $KUBERNETES_CMD config use-context production
 fi
 
 if [ $($KUBERNETES_CMD get services | grep -c crossbar) -ne 1 ]; then
