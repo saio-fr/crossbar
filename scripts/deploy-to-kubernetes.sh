@@ -24,10 +24,12 @@ $KUBERNETES_CMD config set-context production --namespace=production --cluster=s
 
 # Switch k8 namespaces (prod, staging...) based on current branch
 if [ $CIRCLE_BRANCH = "staging" ]; then
+    echo 'Using staging namespace'
     $KUBERNETES_CMD config use-context staging
 fi
 
 if [ $CIRCLE_BRANCH = "master" ]; then
+    echo 'Using production namespace'
     $KUBERNETES_CMD config use-context production
 fi
 
