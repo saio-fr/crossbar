@@ -1,25 +1,20 @@
 #!/bin/bash
 pwd
-cat > scripts/build/crossbar-service.yml <<EOF
+cat > scripts/build/crossbar-public-service.yml <<EOF
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: crossbar
+  name: crossbar-public
   labels:
-    name: crossbar
+    name: crossbar-public
     branch: ${CIRCLE_BRANCH}
     commit: ${CIRCLE_SHA1}
 spec:
-  type: NodePort
   ports:
     - port: 8080
       name: ws-public
       targetPort: 8080
-      protocol: TCP
-    - port: 8081
-      name: ws-internal
-      targetPort: 8081
       protocol: TCP
   # just like the selector in the replication controller,
   # but this time it identifies the set of pods to load balance

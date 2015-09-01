@@ -13,7 +13,8 @@ fi
 # create service & rc
 mkdir scripts/build
 chmod +x scripts/create-crossbar-controller.yml.sh && scripts/create-crossbar-controller.yml.sh
-chmod +x scripts/create-crossbar-service.yml.sh && scripts/create-crossbar-service.yml.sh
+chmod +x scripts/create-crossbar-public-service.yml.sh && scripts/create-crossbar-public-service.yml.sh
+chmod +x scripts/create-crossbar-private-service.yml.sh && scripts/create-crossbar-private-service.yml.sh
 
 # export kubectl parameters
 export KUBERNETES_KUBECTL=~/kubernetes/cluster/kubectl.sh
@@ -35,7 +36,8 @@ fi
 
 if [ $($KUBERNETES_CMD get services | grep -c crossbar) -ne 1 ]; then
     echo "Create crossbar service"
-    $KUBERNETES_CMD create -f scripts/build/crossbar-service.yml
+    $KUBERNETES_CMD create -f scripts/build/crossbar-public-service.yml
+    $KUBERNETES_CMD create -f scripts/build/crossbar-private-service.yml
 fi
 
 if [ $($KUBERNETES_CMD get rc | grep -c crossbar) -ne 1 ]; then
