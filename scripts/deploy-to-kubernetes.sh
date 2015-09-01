@@ -19,6 +19,8 @@ chmod +x scripts/create-crossbar-service.yml.sh && scripts/create-crossbar-servi
 export KUBERNETES_KUBECTL=~/kubernetes/cluster/kubectl.sh
 export KUBERNETES_CMD="$KUBERNETES_KUBECTL --server=${KUBERNETES_SERVER} --username=${KUBERNETES_USERNAME} --password=${KUBERNETES_PASSWORD} --insecure-skip-tls-verify=true"
 
+echo $KUBERNETES_CMD config view
+
 # Switch k8 namespaces (prod, staging...) based on current branch
 if [ $CIRCLE_BRANCH = "staging" ]; then
     $KUBERNETES_CMD config use-context staging
