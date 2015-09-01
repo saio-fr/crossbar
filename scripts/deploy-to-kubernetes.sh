@@ -19,7 +19,8 @@ chmod +x scripts/create-crossbar-service.yml.sh && scripts/create-crossbar-servi
 export KUBERNETES_KUBECTL=~/kubernetes/cluster/kubectl.sh
 export KUBERNETES_CMD="$KUBERNETES_KUBECTL --server=${KUBERNETES_SERVER} --username=${KUBERNETES_USERNAME} --password=${KUBERNETES_PASSWORD} --insecure-skip-tls-verify=true"
 
-echo $KUBERNETES_CMD config view
+$KUBERNETES_CMD config set-context staging --namespace=staging --cluster=saio-fr_kubernetes --user=saio-fr_kubernetes
+$KUBERNETES_CMD config set-context production --namespace=production --cluster=saio-fr_kubernetes --user=saio-fr_kubernetes
 
 # Switch k8 namespaces (prod, staging...) based on current branch
 if [ $CIRCLE_BRANCH = "staging" ]; then
