@@ -34,9 +34,13 @@ if [ "$CIRCLE_BRANCH" = "master" ]; then
     $KUBERNETES_CMD config use-context production
 fi
 
-if [ $($KUBERNETES_CMD get services | grep -c crossbar) -ne 1 ]; then
+if [ $($KUBERNETES_CMD get services | grep -c crossbar-public) -ne 1 ]; then
     echo "Create crossbar service"
     $KUBERNETES_CMD create -f scripts/build/crossbar-public-service.yml
+fi
+
+if [ $($KUBERNETES_CMD get services | grep -c crossbar-private) -ne 1 ]; then
+    echo "Create crossbar service"
     $KUBERNETES_CMD create -f scripts/build/crossbar-private-service.yml
 fi
 
