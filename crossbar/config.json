@@ -4,8 +4,11 @@
 		"realms": [{
 			"name": "saio",
 			"roles": [{
-				"name": "user",
-				"authorizer": "fr.saio.service.authorizer.crossbar.can"
+				"name": "anonymous",
+				"authorizer": "fr.saio.service.authorizer.anonymous.crossbar.can"
+			}, {
+				"name": "registered",
+				"authorizer": "fr.saio.service.authorizer.registered.crossbar.can"
 			}, {
 				"name": "service",
 				"permissions": [{
@@ -32,9 +35,9 @@
 				"auto_ping_size": 4
 			},
 			"auth": {
-				"wampcra": {
+				"ticket": {
 					"type": "dynamic",
-					"authenticator": "fr.saio.service.crossbar.session.manager.authenticate"
+					"authenticator": "fr.saio.service.authenticate"
 				}
 			}
 		}, {
