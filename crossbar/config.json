@@ -5,10 +5,10 @@
 			"name": "saio",
 			"roles": [{
 				"name": "anonymous",
-				"authorizer": "fr.saio.service.authorizer.anonymous.crossbar.can"
+				"authorizer": "fr.saio.service.authorizer.crossbar.can"
 			}, {
 				"name": "registered",
-				"authorizer": "fr.saio.service.authorizer.registered.crossbar.can"
+				"authorizer": "fr.saio.service.authorizer.crossbar.can"
 			}, {
 				"name": "service",
 				"permissions": [{
