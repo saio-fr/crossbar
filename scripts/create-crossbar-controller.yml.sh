@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: crossbar
-          image: eu.gcr.io/saio-fr/crossbar:${CIRCLE_BRANCH}
+          image: eu.gcr.io/saio-fr/crossbar:${CIRCLE_BRANCH}.${CIRCLE_SHA1}
           ports:
             - containerPort: 8080
 

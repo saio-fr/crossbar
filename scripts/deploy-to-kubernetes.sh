@@ -49,5 +49,5 @@ if [ $($KUBERNETES_CMD get rc | grep -c crossbar) -ne 1 ]; then
     $KUBERNETES_CMD create -f scripts/build/crossbar-controller.yml
 else
     echo "Rolling update crossbar rc"
-    $KUBERNETES_CMD rolling-update crossbar --update-period=10s --image=${EXTERNAL_REGISTRY_ENDPOINT}/crossbar:${CIRCLE_BRANCH}
+    $KUBERNETES_CMD rolling-update crossbar --update-period=10s --image=${EXTERNAL_REGISTRY_ENDPOINT}/crossbar:${CIRCLE_BRANCH}.${CIRCLE_SHA1}
 fi
