@@ -10,17 +10,17 @@ dependencies:
   override:
     - docker info
     - if [[ -e ~/docker/image.tar ]]; then docker load --input ~/docker/image.tar; fi
-    - docker build -t ${EXTERNAL_REGISTRY_ENDPOINT}/crossbar:${CIRCLE_BRANCH}_${CIRCLE_SHA1} .
-    - mkdir -p ~/docker; docker save ${EXTERNAL_REGISTRY_ENDPOINT}/crossbar:${CIRCLE_BRANCH}_${CIRCLE_SHA1} > ~/docker/image.tar
+    - docker build -t ${EXTERNAL_REGISTRY_ENDPOINT}/crossbar:${CIRCLE_BRANCH} .
+    - mkdir -p ~/docker; docker save ${EXTERNAL_REGISTRY_ENDPOINT}/crossbar:${CIRCLE_BRANCH} > ~/docker/image.tar
 
 test:
   override:
-    - docker run -d -p 8080:8080 ${EXTERNAL_REGISTRY_ENDPOINT}/crossbar:${CIRCLE_BRANCH}_${CIRCLE_SHA1}; sleep 10
+    - docker run -d -p 8080:8080 ${EXTERNAL_REGISTRY_ENDPOINT}/crossbar:${CIRCLE_BRANCH}; sleep 10
 
 deployment:
   kubernetes:
     branch: [master, develop]
     commands:
       - chmod +x scripts/auth-gcloud.sh && scripts/auth-gcloud.sh
-      - gcloud docker push ${EXTERNAL_REGISTRY_ENDPOINT}/crossbar:${CIRCLE_BRANCH}_${CIRCLE_SHA1} > /dev/null
+      - gcloud docker push ${EXTERNAL_REGISTRY_ENDPOINT}/crossbar:${CIRCLE_BRANCH} > /dev/null
       - chmod +x scripts/deploy-to-kubernetes.sh && scripts/deploy-to-kubernetes.sh

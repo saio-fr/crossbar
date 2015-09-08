@@ -9,7 +9,6 @@ metadata:
   labels:
     name: crossbar
     branch: ${CIRCLE_BRANCH}
-    commit: ${CIRCLE_SHA1}
 spec:
   replicas: 1
   # selector identifies the set of pods that this
@@ -29,7 +28,7 @@ spec:
     spec:
       containers:
         - name: crossbar
-          image: eu.gcr.io/saio-fr/crossbar:${CIRCLE_BRANCH}_${CIRCLE_SHA1}
+          image: eu.gcr.io/saio-fr/crossbar:${CIRCLE_BRANCH}
           ports:
             - containerPort: 8080
 

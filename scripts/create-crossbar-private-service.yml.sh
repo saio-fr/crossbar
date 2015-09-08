@@ -9,7 +9,6 @@ metadata:
   labels:
     name: crossbar-private
     branch: ${CIRCLE_BRANCH}
-    commit: ${CIRCLE_SHA1}
 spec:
   ports:
     - port: 8081
