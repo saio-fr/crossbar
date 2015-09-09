@@ -22,7 +22,7 @@ deployment:
     branch: [master, develop]
     commands:
       - chmod +x scripts/auth-gcloud.sh && scripts/auth-gcloud.sh
-      - gcloud docker tag ${EXTERNAL_REGISTRY_ENDPOINT}/crossbar:${CIRCLE_BRANCH}.${CIRCLE_SHA1} ${EXTERNAL_REGISTRY_ENDPOINT}/crossbar:${CIRCLE_BRANCH}
+      - gcloud docker tag -f ${EXTERNAL_REGISTRY_ENDPOINT}/crossbar:${CIRCLE_BRANCH}.${CIRCLE_SHA1} ${EXTERNAL_REGISTRY_ENDPOINT}/crossbar:${CIRCLE_BRANCH}
       - gcloud docker push ${EXTERNAL_REGISTRY_ENDPOINT}/crossbar:${CIRCLE_BRANCH}.${CIRCLE_SHA1} > /dev/null
       - gcloud docker push ${EXTERNAL_REGISTRY_ENDPOINT}/crossbar:${CIRCLE_BRANCH} > /dev/null
       - chmod +x scripts/deploy-to-kubernetes.sh && scripts/deploy-to-kubernetes.sh
